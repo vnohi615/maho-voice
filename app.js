@@ -18,7 +18,8 @@ document.addEventListener("DOMContentLoaded", async () => {
       const btn = document.createElement("button");
       btn.className = "voice-btn";
       btn.dataset.src = sound.src;
-      btn.innerHTML = `<span>${sound.label}</span><span class="ripple"></span>`;
+      btn.innerHTML = `<span>${sound.label}</span><span class="wave"></span>`;
+
 
       container.appendChild(btn);
 
@@ -42,6 +43,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderButtons(filtered);
   });
 });
+
 
 
 
