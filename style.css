@@ -147,13 +147,13 @@ button.voice-btn span {
 
 /* 魔法陣の回転 */
 @keyframes spinOuter {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(-360deg); } 
+  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+  100% { transform: translate(-50%, -50%) rotate(-360deg) scale(1); }
 }
 
 @keyframes spinInner {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); } 
+   0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
+  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
 }
 
 /* フッター */
@@ -218,6 +218,7 @@ footer {
 .voice-btn.playing .wave {
   animation: waveExpandSync 1.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 
 
 
