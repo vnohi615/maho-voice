@@ -1,5 +1,5 @@
 /* ==========================
-   🩵 MAHO Voice Magic UI — 4/3/2列対応・完全安定版
+   🩵 MAHO Voice Magic UI — 最終安定版
    ========================== */
 
 :root {
@@ -70,7 +70,7 @@ main {
 /* ===== グリッド（レスポンシブ） ===== */
 #voiceContainer {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 💻 デフォルト4列 */
+  grid-template-columns: repeat(4, 1fr);
   gap: 2.5rem;
   padding: 2rem;
   justify-items: center;
@@ -78,6 +78,7 @@ main {
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 /* タブレット（992〜1199px）：3列 */
@@ -88,8 +89,8 @@ main {
   }
 }
 
-/* スマホ（〜768px）：2列 */
-@media (max-width: 768px) {
+/* スマホ（769〜991px）：2列 */
+@media (max-width: 991px) {
   #voiceContainer {
     grid-template-columns: repeat(2, 1fr);
     gap: 1.5rem;
@@ -259,4 +260,25 @@ main {
   opacity: 1;
   transform: scale(1);
   transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* ==========================
+   📱 レスポンシブ中央補正パッチ
+   ========================== */
+@media (max-width: 1199px) {
+  #voiceContainer {
+    justify-content: center !important;
+    justify-items: center !important;
+    margin: 0 auto !important;
+    width: 100%;
+  }
+  .voice-btn { margin: 0 auto; }
+}
+
+@media (max-width: 768px) {
+  #voiceContainer {
+    max-width: 100% !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 }
