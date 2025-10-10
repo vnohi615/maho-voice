@@ -1,50 +1,40 @@
-// ============================
-// 魔儡まほ ボイスコレクション
-// sounds.json読込 + 魔法陣再生制御
-// ============================
+const container = document.getElementById("voiceContainer");
+let currentAudio = null;  // 再生中の音
+let currentButton = null; // 再生中のボタン
 
-document.addEventListener("DOMContentLoaded", async () => {
-  const container = document.getElementById("voiceContainer");
-  const searchBox = document.getElementById("searchBox");
-
-  // sounds.jsonを読み込み
-  const response = await fetch("./sounds.json");
-  const sounds = await response.json();
-
-  // ボタン生成
-  const renderButtons = (list) => {
-    container.innerHTML = "";
-    list.forEach(sound => {
+fetch("sounds.json")
+  .then(res => res.json())
+  .then(sounds => {
+    sounds.forEach(sound => {
       const btn = document.createElement("button");
       btn.className = "voice-btn";
-      btn.dataset.src = sound.src;
       btn.innerHTML = `<span>${sound.label}</span><span class="wave"></span>`;
-
-
       container.appendChild(btn);
 
-      const audio = new Audio(sound.src);
       btn.addEventListener("click", () => {
-        document.querySelectorAll(".voice-btn").forEach(b => b.classList.remove("playing"));
-        audio.currentTime = 0;
-        audio.play();
+        // すでに別の音が鳴っていたら止める
+        if (currentAudio) {
+          currentAudio.pause();
+          currentAudio.currentTime = 0;
+          if (currentButton) currentButton.classList.remove("playing");
+        }
+
+        // 新しい音声を再生
+        const audio = new Audio(sound.src);
+        currentAudio = audio;
+        currentButton = btn;
+
         btn.classList.add("playing");
-        audio.onended = () => btn.classList.remove("playing");
+        audio.play();
+
+        // 再生が終わったらクラスを外す
+        audio.addEventListener("ended", () => {
+          btn.classList.remove("playing");
+          if (currentAudio === audio) {
+            currentAudio = null;
+            currentButton = null;
+          }
+        });
       });
     });
-  };
-
-  renderButtons(sounds);
-
-  // 検索機能
-  searchBox.addEventListener("input", e => {
-    const q = e.target.value.toLowerCase();
-    const filtered = sounds.filter(s => s.title.toLowerCase().includes(q));
-    renderButtons(filtered);
   });
-});
-
-
-
-
-
