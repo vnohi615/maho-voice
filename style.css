@@ -219,6 +219,29 @@ footer {
   animation: waveExpandSync 1.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ==========================
+   🌌 収束アニメーション
+   ========================== */
 
+@keyframes magicCollapse {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    filter: drop-shadow(0 0 10px rgba(255,223,168,0.8));
+  }
+  60% {
+    transform: scale(0.6);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+    filter: drop-shadow(0 0 0 rgba(255,223,168,0));
+  }
+}
 
-
+/* 収束中の状態（playing解除→closing付与） */
+button.voice-btn.closing::before,
+button.voice-btn.closing::after {
+  animation: magicCollapse 0.9s ease-in forwards;
+}
