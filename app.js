@@ -33,7 +33,7 @@ fetch("sounds.json")
           if (currentButton) {
             currentButton.classList.remove("playing");
             currentButton.classList.add("closing");
-            setTimeout(() => currentButton.classList.remove("closing"), 900);
+            setTimeout(() => currentButton.classList.remove("closing"), 300);
           }
         }
 
@@ -59,3 +59,4 @@ fetch("sounds.json")
     });
   })
   .catch(err => console.error("Error loading sounds:", err));
+
