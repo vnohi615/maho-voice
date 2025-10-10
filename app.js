@@ -30,6 +30,10 @@ fetch("sounds.json")
         // 再生が終わったらクラスを外す
         audio.addEventListener("ended", () => {
           btn.classList.remove("playing");
+
+        // 💫 収束アニメーションを付与
+        btn.classList.add("closing");
+          setTimeout(() => btn.classList.remove("closing"), 900); // 0.9秒後に削除
           if (currentAudio === audio) {
             currentAudio = null;
             currentButton = null;
@@ -38,3 +42,4 @@ fetch("sounds.json")
       });
     });
   });
+
