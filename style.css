@@ -1,5 +1,5 @@
 /* ==========================
-   🩵 MAHO Voice Magic UI — 完全統合版（カテゴリ対応）
+   🩵 MAHO Voice Magic UI — 4/3/2列対応・完全安定版
    ========================== */
 
 :root {
@@ -31,7 +31,7 @@ header, footer {
 
 main {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1300px;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -67,58 +67,54 @@ main {
   box-shadow: 0 0 10px rgba(142,165,255,0.6);
 }
 
-/* ===== 切替フェード ===== */
-.fade-out {
-  opacity: 0;
-  transform: scale(0.95);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-.fade-in {
-  opacity: 1;
-  transform: scale(1);
-  transition: opacity 0.35s ease, transform 0.35s ease;
-}
-
-/* ===== グリッド（列数を明示制御） ===== */
+/* ===== グリッド（レスポンシブ） ===== */
 #voiceContainer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* PC 3列 */
+  grid-template-columns: repeat(4, 1fr); /* 💻 デフォルト4列 */
   gap: 2.5rem;
   padding: 2rem;
   justify-items: center;
   align-items: center;
   width: 100%;
-  max-width: 900px;
+  max-width: 1200px;
   margin: 0 auto;
 }
-@media (max-width: 992px) {
-  #voiceContainer { grid-template-columns: repeat(2, 1fr); gap: 2rem; }
-}
-@media (max-width: 768px) {
-  #voiceContainer { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-}
-@media (max-width: 480px) {
+
+/* タブレット（992〜1199px）：3列 */
+@media (max-width: 1199px) {
   #voiceContainer {
-    grid-template-columns: 1fr;
-    justify-content: center; /* grid全体を中央寄せ */
-    justify-items: center;   /* 要素自体も中央寄せ */
-    align-items: center;
-    max-width: 100%;
-    padding: 1rem 0;
-    margin: 0 auto;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
   }
 }
 
-/* ===== ボタン（※枠ありを維持） ===== */
+/* スマホ（〜768px）：2列 */
+@media (max-width: 768px) {
+  #voiceContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    max-width: 700px;
+  }
+}
+
+/* 極小端末（〜400px）：1列 */
+@media (max-width: 400px) {
+  #voiceContainer {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    padding: 1rem;
+    max-width: 100%;
+  }
+}
+
+/* ===== ボタン ===== */
 .voice-btn {
-  margin: 0 auto;  
   position: relative;
   display: grid;
   place-items: center;
-  width: 80%;
-  max-width: 200px;
+  width: 180px;
   height: 180px;
-  border: 2px solid var(--maho-border);  /* ← 枠はここ */
+  border: 2px solid var(--maho-border);
   border-radius: 50%;
   background: rgba(255,255,255,0.03);
   color: var(--maho-lightblue);
@@ -134,7 +130,7 @@ main {
   box-shadow: 0 0 18px rgba(142,165,255,0.5);
 }
 
-/* ===== ラベルは常に最前面 ===== */
+/* ===== ラベル ===== */
 .voice-btn span {
   position: relative;
   z-index: 2;
@@ -142,12 +138,12 @@ main {
   line-height: 1.2;
 }
 
-/* ===== 魔法陣構造（絶対配置はボタン内だけ） ===== */
+/* ===== 魔法陣構造 ===== */
 .magic-wrap {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 200px;   /* 魔法陣サイズ */
+  width: 200px;
   height: 200px;
   transform: translate(-50%, -50%) scale(0);
   transform-origin: center;
@@ -155,6 +151,7 @@ main {
   pointer-events: none;
   z-index: 0;
 }
+
 .magic-layer {
   position: absolute;
   inset: 0;
@@ -164,17 +161,18 @@ main {
   width: 100%;
   height: 100%;
 }
-/* 光量アップ版 */
+
 .magic-layer.outer {
   background-image: url("./assets/magic_outer.svg");
   filter: drop-shadow(0 0 20px rgba(142,165,255,1));
 }
+
 .magic-layer.inner {
   background-image: url("./assets/magic_inner.svg");
   filter: drop-shadow(0 0 30px rgba(200,220,255,1));
 }
 
-/* ===== 魔法陣「ぐわん出現」（ボワン統合） ===== */
+/* ===== 出現（ぐわん＋光） ===== */
 @keyframes magicAppear {
   0% {
     transform: translate(-50%, -50%) scale(0.2) rotate(-180deg);
@@ -187,31 +185,40 @@ main {
     filter: drop-shadow(0 0 60px rgba(200,220,255,1));
   }
   100% {
-    transform: translate(-50%, -50%) scale(1.1) rotate(0deg); /* 少し大きいままキープ */
+    transform: translate(-50%, -50%) scale(1.1) rotate(0deg);
     opacity: 1;
     filter: drop-shadow(0 0 25px rgba(200,220,255,0.9));
   }
 }
+
 .voice-btn.playing .magic-wrap {
   animation: magicAppear 0.8s cubic-bezier(0.45, 0, 0.2, 1.1) forwards;
 }
 
-/* ===== 回転（外=反時計、内=時計） ===== */
+/* ===== 回転 ===== */
 @keyframes spinOuter { 100% { transform: rotate(-360deg); } }
 @keyframes spinInner { 100% { transform: rotate(360deg); } }
-.voice-btn.playing .outer { animation: spinOuter 9s linear infinite; }
-.voice-btn.playing .inner { animation: spinInner 6.9s linear infinite; }
 
-/* ===== 波紋（魔法陣と同期） ===== */
+.voice-btn.playing .outer {
+  animation: spinOuter 9s linear infinite;
+}
+.voice-btn.playing .inner {
+  animation: spinInner 6.9s linear infinite;
+}
+
+/* ===== 波紋 ===== */
 @keyframes unifiedWave {
   0%   { transform: translate(-50%, -50%) scale(0);  opacity: 0.85; }
   40%  { transform: translate(-50%, -50%) scale(6);  opacity: 0.5; }
   100% { transform: translate(-50%, -50%) scale(14); opacity: 0; }
 }
+
 .voice-btn .wave {
   position: absolute;
-  top: 50%; left: 50%;
-  width: 30px; height: 30px;
+  top: 50%;
+  left: 50%;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(142,165,255,0.9) 0%, rgba(142,165,255,0) 70%);
   transform: translate(-50%, -50%) scale(0);
@@ -219,7 +226,10 @@ main {
   pointer-events: none;
   z-index: 1;
 }
-.voice-btn.playing .wave { animation: unifiedWave 0.7s cubic-bezier(0.4, 0, 0.2, 1); }
+
+.voice-btn.playing .wave {
+  animation: unifiedWave 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
 /* ===== 収束（2回転＋キュッ） ===== */
 @keyframes magicCollapseWrap {
@@ -234,8 +244,19 @@ main {
     filter: drop-shadow(0 0 0 rgba(200,220,255,0));
   }
 }
+
 .voice-btn.closing .magic-wrap {
   animation: magicCollapseWrap 1s cubic-bezier(0.8, 0, 0.2, 1) forwards;
 }
 
-
+/* ===== カテゴリ切替フェード ===== */
+.fade-out {
+  opacity: 0;
+  transform: scale(0.95);
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+.fade-in {
+  opacity: 1;
+  transform: scale(1);
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
