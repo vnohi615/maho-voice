@@ -38,7 +38,7 @@ fetch("sounds.json")
           btn.classList.add("closing");
 
           // 収束アニメ完了後にクラスを消す
-          setTimeout(() => btn.classList.remove("closing"), 900);
+          setTimeout(() => btn.classList.remove("closing"), 9000);
 
           if (currentAudio === audio) {
             currentAudio = null;
@@ -49,3 +49,4 @@ fetch("sounds.json")
     });
   })
   .catch(err => console.error("Error loading sounds:", err));
+
