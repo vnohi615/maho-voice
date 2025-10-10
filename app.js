@@ -16,7 +16,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     container.innerHTML = "";
     list.forEach(sound => {
       const btn = document.createElement("button");
-      btn.className = "voice-btn";
+      btn.className = "voice";
       btn.dataset.src = sound.src;
       btn.innerHTML = `<span>${sound.label}</span>`;
       container.appendChild(btn);
@@ -41,4 +41,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderButtons(filtered);
   });
 });
+
 
