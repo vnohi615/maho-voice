@@ -11,7 +11,6 @@ fetch("sounds.json")
   .then(res => res.json())
   .then(sounds => {
     sounds.forEach(sound => {
-      // ===== ボタン生成 =====
       const btn = document.createElement("button");
       btn.className = "voice-btn";
       btn.innerHTML = `
@@ -24,9 +23,8 @@ fetch("sounds.json")
       `;
       container.appendChild(btn);
 
-      // ===== クリック動作 =====
       btn.addEventListener("click", () => {
-        // 他の音が鳴ってたら止めて収束
+        // 既存再生を止めて収束
         if (currentAudio) {
           currentAudio.pause();
           currentAudio.currentTime = 0;
@@ -37,7 +35,7 @@ fetch("sounds.json")
           }
         }
 
-        // 新しい音を再生
+        // 新規再生
         const audio = new Audio(sound.src);
         currentAudio = audio;
         currentButton = btn;
@@ -45,14 +43,11 @@ fetch("sounds.json")
         btn.classList.add("playing");
         audio.play();
 
-        // 再生終了時の処理（ギュイン収束）
+        // 再生終了→収束
         audio.addEventListener("ended", () => {
           btn.classList.remove("playing");
           btn.classList.add("closing");
-
-          // 収束アニメ終了後にリセット
           setTimeout(() => btn.classList.remove("closing"), 1000);
-
           if (currentAudio === audio) {
             currentAudio = null;
             currentButton = null;
@@ -62,3 +57,4 @@ fetch("sounds.json")
     });
   })
   .catch(err => console.error("Error loading sounds:", err));
+
