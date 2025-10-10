@@ -1,7 +1,7 @@
 [
-  { "category": "greeting", "label": "KP！", "src": "audio/KP.wav" },
-  { "category": "reaction", "label": "えっちぃ.", "src": "audio/えっちぃ.wav" },
-  { "category": "quote", "label": "お姉さんといいことしない？", "src": "audio/お姉さんといいことしない？.wav" },
-  { "category": "badmouth", "label": "ばーか", "src": "audio/ばーか.wav" },
-  { "category": "greeting", "label": "わしじゃよ", "src": "audio/わしじゃよ.wav" }
+  { "label": "KP！", "src": "audio/KP.wav" },
+  { "label": "えっちぃ.", "src": "audio/えっちぃ.wav" },
+  { "label": "お姉さんといいことしない？", "src": "audio/お姉さんといいことしない？.wav" },
+  { "label": "ばーか", "src": "audio/ばーか.wav" },
+  { "label": "わしじゃよ", "src": "audio/わしじゃよ.wav" }
 ]
