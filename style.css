@@ -220,28 +220,34 @@ footer {
 }
 
 /* ==========================
-   🌌 収束アニメーション
+   🌌 ギュン収束アニメーション（回転付き）
    ========================== */
 
 @keyframes magicCollapse {
   0% {
-    transform: scale(1);
+    transform: scale(1) rotate(0deg);
     opacity: 1;
     filter: drop-shadow(0 0 10px rgba(255,223,168,0.8));
   }
-  60% {
-    transform: scale(0.6);
-    opacity: 0.6;
+  40% {
+    transform: scale(0.7) rotate(90deg);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(0.3) rotate(180deg);
+    opacity: 0.5;
   }
   100% {
-    transform: scale(0);
+    transform: scale(0) rotate(270deg);
     opacity: 0;
     filter: drop-shadow(0 0 0 rgba(255,223,168,0));
   }
 }
 
-/* 収束中の状態（playing解除→closing付与） */
+/* 💫 closingクラス中に発動する */
 button.voice-btn.closing::before,
 button.voice-btn.closing::after {
-  animation: magicCollapse 0.9s ease-in forwards;
+  animation: magicCollapse 0.9s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
+
+
