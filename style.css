@@ -98,8 +98,8 @@ main {
   }
 }
 
-/* 極小端末（〜400px）：1列 */
-@media (max-width: 400px) {
+/* 極小端末（〜 280px）：1列 */
+@media (max-width: 280px) {
   #voiceContainer {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -282,3 +282,4 @@ main {
     padding-right: 0 !important;
   }
 }
+
