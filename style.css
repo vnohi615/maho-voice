@@ -41,15 +41,25 @@ main {
 /* ===== グリッドレイアウト（常に2列以上維持） ===== */
 #voiceContainer {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* 💻 PC：3列固定 */
   gap: 2.5rem;
   padding: 2rem;
   justify-items: center;
   align-items: center;
   width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
-/* 📱 スマホでも2列維持 */
+/* 📱 タブレット〜中画面：2列固定 */
+@media (max-width: 992px) {
+  #voiceContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* 📱 スマホ（〜768px）：2列固定維持 */
 @media (max-width: 768px) {
   #voiceContainer {
     grid-template-columns: repeat(2, 1fr);
@@ -57,10 +67,11 @@ main {
   }
 }
 
-/* 📱 ごく小さい端末のみ1列 */
-@media (max-width: 360px) {
+/* 📱 極小端末（〜400px）だけ1列 */
+@media (max-width: 400px) {
   #voiceContainer {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
 }
 
@@ -213,4 +224,5 @@ main {
   z-index: 2;
   text-align: center;
 }
+
 
