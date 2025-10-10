@@ -1,6 +1,7 @@
 const container = document.getElementById("voiceContainer");
-let currentAudio = null;  // 再生中の音
-let currentButton = null; // 再生中のボタン
+
+let currentAudio = null;   // 現在再生中の音声
+let currentButton = null;  // 現在再生中のボタン
 
 fetch("sounds.json")
   .then(res => res.json())
@@ -12,14 +13,18 @@ fetch("sounds.json")
       container.appendChild(btn);
 
       btn.addEventListener("click", () => {
-        // すでに別の音が鳴っていたら止める
+        // ✅ 既に別の音が再生中なら止めてリセット
         if (currentAudio) {
           currentAudio.pause();
           currentAudio.currentTime = 0;
-          if (currentButton) currentButton.classList.remove("playing");
+          if (currentButton) {
+            currentButton.classList.remove("playing");
+            currentButton.classList.add("closing");
+            setTimeout(() => currentButton.classList.remove("closing"), 900);
+          }
         }
 
-        // 新しい音声を再生
+        // ✅ 新しい音声を作成・再生
         const audio = new Audio(sound.src);
         currentAudio = audio;
         currentButton = btn;
@@ -27,13 +32,14 @@ fetch("sounds.json")
         btn.classList.add("playing");
         audio.play();
 
-        // 再生が終わったらクラスを外す
+        // ✅ 再生終了時の処理（収束アニメ）
         audio.addEventListener("ended", () => {
           btn.classList.remove("playing");
+          btn.classList.add("closing");
 
-        // 💫 収束アニメーションを付与
-        btn.classList.add("closing");
-          setTimeout(() => btn.classList.remove("closing"),2000); // 0.9秒後に削除
+          // 収束アニメ完了後にクラスを消す
+          setTimeout(() => btn.classList.remove("closing"), 900);
+
           if (currentAudio === audio) {
             currentAudio = null;
             currentButton = null;
@@ -41,6 +47,5 @@ fetch("sounds.json")
         });
       });
     });
-  });
-
-
+  })
+  .catch(err => console.error("Error loading sounds:", err));
