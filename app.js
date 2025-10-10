@@ -33,7 +33,7 @@ fetch("sounds.json")
 
         // 💫 収束アニメーションを付与
         btn.classList.add("closing");
-          setTimeout(() => btn.classList.remove("closing"), 900); // 0.9秒後に削除
+          setTimeout(() => btn.classList.remove("closing"),2000); // 0.9秒後に削除
           if (currentAudio === audio) {
             currentAudio = null;
             currentButton = null;
@@ -42,4 +42,5 @@ fetch("sounds.json")
       });
     });
   });
+
 
