@@ -1,30 +1,31 @@
 /* ==========================
-   🪄 MAHO Voice Magic UI — レイアウト完全安定版
+   🩵 MAHO Voice Magic UI — 「ぐわん＋一括ボワン」版
    ========================== */
 
 :root {
-  --maho-blue: #8796C6;
-  --maho-gold: #FFDFA8;
+  --maho-blue: #8ea5ff;
+  --maho-lightblue: #bcd4ff;
+  --maho-border: rgba(142,165,255,0.4);
+  --maho-glow: rgba(142,165,255,0.8);
 }
 
-/* ===== 全体構造 ===== */
+/* ===== 全体レイアウトなど（前回と同じ） ===== */
 body {
   margin: 0;
-  background: radial-gradient(circle at center, #0b0c14 0%, #050509 100%);
-  color: white;
+  background: radial-gradient(circle at center, #0b1020 0%, #03040a 100%);
+  color: var(--maho-lightblue);
   font-family: 'Cinzel Decorative', serif;
   display: flex;
-  flex-direction: column; /* ←縦積みに戻す！ */
+  flex-direction: column;
   align-items: center;
   min-height: 100vh;
 }
 
-/* ===== ヘッダー／フッター ===== */
 header, footer {
   width: 100%;
   text-align: center;
   padding: 1rem 0;
-  color: var(--maho-gold);
+  color: var(--maho-lightblue);
 }
 
 main {
@@ -36,7 +37,6 @@ main {
   align-items: center;
 }
 
-/* ===== グリッドレイアウト ===== */
 #voiceContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -54,17 +54,19 @@ main {
   place-items: center;
   width: 180px;
   height: 180px;
-  border: none;
-  background: transparent;
-  color: var(--maho-gold);
+  border: 2px solid var(--maho-border);
+  border-radius: 50%;
+  background: rgba(255,255,255,0.03);
+  color: var(--maho-lightblue);
   font-size: 1.1rem;
   cursor: pointer;
-  transition: transform 0.25s ease;
+  transition: transform 0.25s ease, border-color 0.3s ease, box-shadow 0.3s ease;
   overflow: visible;
 }
-
 .voice-btn:hover {
   transform: scale(1.05);
+  border-color: var(--maho-glow);
+  box-shadow: 0 0 12px rgba(142,165,255,0.4);
 }
 
 /* ===== 魔法陣構造 ===== */
@@ -80,7 +82,6 @@ main {
   pointer-events: none;
   z-index: 0;
 }
-
 .magic-layer {
   position: absolute;
   inset: 0;
@@ -90,27 +91,37 @@ main {
   width: 100%;
   height: 100%;
 }
-
 .magic-layer.outer {
   background-image: url("./assets/magic_outer.svg");
-  filter: drop-shadow(0 0 8px rgba(135,150,198,0.8));
+  filter: drop-shadow(0 0 8px rgba(142,165,255,0.9));
 }
-
 .magic-layer.inner {
   background-image: url("./assets/magic_inner.svg");
-  filter: drop-shadow(0 0 10px rgba(255,223,168,0.9));
+  filter: drop-shadow(0 0 10px rgba(200,220,255,0.95));
 }
 
-/* ===== 展開アニメ ===== */
+/* ===== 魔法陣「ぐわん出現」アニメーション ===== */
+@keyframes magicAppear {
+  0% {
+    transform: translate(-50%, -50%) scale(0.2) rotate(-180deg);
+    opacity: 0;
+  }
+  40% {
+    transform: translate(-50%, -50%) scale(1.2) rotate(20deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
 .voice-btn.playing .magic-wrap {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
+  animation: magicAppear 0.6s cubic-bezier(0.45, 0, 0.2, 1.1) forwards;
 }
 
-/* ===== 回転アニメ ===== */
+/* ===== 回転 ===== */
 @keyframes spinOuter { 100% { transform: rotate(-360deg); } }
 @keyframes spinInner { 100% { transform: rotate(360deg); } }
-
 .voice-btn.playing .outer {
   animation: spinOuter 9s linear infinite;
 }
@@ -118,7 +129,21 @@ main {
   animation: spinInner 6.9s linear infinite;
 }
 
-/* ===== 波紋 ===== */
+/* ===== 波紋（統合ボワン） ===== */
+@keyframes unifiedWave {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.8;
+  }
+  40% {
+    transform: translate(-50%, -50%) scale(6);
+    opacity: 0.5;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(14);
+    opacity: 0;
+  }
+}
 .voice-btn .wave {
   position: absolute;
   top: 50%;
@@ -126,25 +151,17 @@ main {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(135,150,198,0.8) 0%, rgba(135,150,198,0) 70%);
+  background: radial-gradient(circle, rgba(142,165,255,0.9) 0%, rgba(142,165,255,0) 70%);
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
   pointer-events: none;
   z-index: 1;
 }
-
-@keyframes waveExpand {
-  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
-  40% { transform: translate(-50%, -50%) scale(5); opacity: 0.6; }
-  70% { transform: translate(-50%, -50%) scale(12); opacity: 0.25; }
-  100% { transform: translate(-50%, -50%) scale(14); opacity: 0; }
-}
-
 .voice-btn.playing .wave {
-  animation: waveExpand 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: unifiedWave 0.7s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ===== ギュイン収束（2回転＋締まり強化） ===== */
+/* ===== ギュイン収束（2回転＋キュッ） ===== */
 @keyframes magicCollapseWrap {
   0% {
     transform: translate(-50%, -50%) scale(1) rotate(0deg);
@@ -155,12 +172,11 @@ main {
     opacity: 0;
   }
 }
-
 .voice-btn.closing .magic-wrap {
   animation: magicCollapseWrap 1s cubic-bezier(0.8, 0, 0.2, 1) forwards;
 }
 
-/* ===== ラベル配置 ===== */
+/* ===== ラベル ===== */
 .voice-btn span {
   position: relative;
   z-index: 2;
