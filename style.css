@@ -1,188 +1,104 @@
 /* ==========================
-   MAHOボイスコレクション
-   青金魔法陣 Ver.（ボワン出現）
+   🪄 MAHO Voice Magic UI (Gyuuin Ver.)
    ========================== */
 
-/* テーマカラー */
 :root {
   --maho-blue: #8796C6;
-  --maho-light: rgba(135,150,198,0.8);
-  --maho-glow: rgba(135,150,198,0.9);
-  --maho-gold: rgba(255,223,168,0.65);
+  --maho-gold: #FFDFA8;
 }
 
-/* ページ全体 */
+/* ===== ベース ===== */
 body {
   margin: 0;
-  padding: 0;
-  background: radial-gradient(ellipse at center, #0a0e18 0%, #000 100%);
-  color: #fff;
-  font-family: 'Zen Maru Gothic', 'Cinzel Decorative', serif;
-  overflow-x: hidden;
-  text-align: center;
-}
-
-/* ヘッダー */
-header {
-  padding: 2rem 0 1rem;
-}
-header h1 {
-  font-size: 2rem;
-  color: var(--maho-blue);
-  text-shadow: 0 0 15px var(--maho-glow);
-  letter-spacing: 2px;
-}
-
-/* 検索＆カテゴリバー */
-#filterBar {
+  background: radial-gradient(circle at center, #0b0c14 0%, #050509 100%);
+  color: white;
+  font-family: 'Cinzel Decorative', serif;
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 1rem;
-  margin: 1rem auto 2rem;
+  min-height: 100vh;
 }
 
-#categoryFilter {
-  background: rgba(255,255,255,0.1);
-  border: 1px solid rgba(135,150,198,0.4);
-  color: #fff;
-  padding: 0.4rem 0.8rem;
-  border-radius: 6px;
-  font-size: 1rem;
-}
-#categoryFilter:focus {
-  outline: none;
-  box-shadow: 0 0 8px rgba(135,150,198,0.8);
-}
-
-/* 検索ボックス */
-#searchBox {
-  margin: 0.5rem auto 2rem;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
-  border-radius: 6px;
-  border: none;
-  outline: none;
-  background: rgba(255,255,255,0.1);
-  color: #fff;
-  box-shadow: 0 0 6px var(--maho-gold);
-}
-
-/* ボタン配置 */
 #voiceContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 2.2rem;
-  padding: 2rem 3rem;
+  gap: 1.5rem;
+  padding: 2rem;
   justify-items: center;
 }
 
-/* ボタン本体 */
-button.voice-btn {
+/* ===== ボタン ===== */
+.voice-btn {
   position: relative;
-  width: 140px;
-  height: 140px;
   border: none;
-  border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.05), rgba(135,150,198,0.1));
-  color: #fff;
-  font-size: 1rem;
-  font-weight: 500;
+  background: transparent;
+  color: var(--maho-gold);
+  font-size: 1.1rem;
   cursor: pointer;
-  overflow: visible;
-  box-shadow: 0 0 12px rgba(135,150,198,0.25);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  transition: transform 0.25s ease;
 }
-button.voice-btn:hover {
+
+.voice-btn:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 22px rgba(135,150,198,0.35);
-}
-
-/* 魔法陣初期状態（非表示） */
-button.voice-btn::before,
-button.voice-btn::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 160%;
-  height: 160%;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: contain;
-  opacity: 0;
-  pointer-events: none;
-  transform: translate(-50%, -50%) scale(0.5) rotate(0deg);
-  transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.22, 1.61, 0.36, 1);
-}
-
-/* 再生中（魔法陣がボワン！） */
-button.voice-btn.playing::before,
-button.voice-btn.playing::after {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-
-/* 外側魔法陣（金） */
-button.voice-btn.playing::before {
-  background-image: url("./assets/magic_outer.svg");
-  animation: spinOuter 9s linear infinite;
-  filter: drop-shadow(0 0 8px rgba(255,223,168,0.75));
-}
-
-/* 内側魔法陣（青金） */
-button.voice-btn.playing::after {
-  background-image: url("./assets/magic_inner.svg");
-  animation: spinInner 6.9s linear infinite;
-  filter: drop-shadow(0 0 10px rgba(135,150,198,0.75));
-}
-
-/* ボタン内テキスト */
-button.voice-btn span {
-  position: relative;
-  z-index: 10;
-  text-shadow: 0 0 6px rgba(255,255,255,0.75);
-  pointer-events: none;
-}
-
-/* 魔法陣の回転 */
-@keyframes spinOuter {
-  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-  100% { transform: translate(-50%, -50%) rotate(-360deg) scale(1); }
-}
-
-@keyframes spinInner {
-   0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
-}
-
-/* フッター */
-footer {
-  color: rgba(255,255,255,0.6);
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-}
-
-/* スマホ対応 */
-@media (max-width: 600px) {
-  #voiceContainer {
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-    gap: 1.8rem;
-  }
-  button.voice-btn {
-    width: 120px;
-    height: 120px;
-  }
 }
 
 /* ==========================
-   🌊 波形エフェクト（展開速度同期ver）
+   ✴️ 魔法陣構造
    ========================== */
 
-.voice-btn {
-  position: relative;
-  overflow: visible;
+.magic-wrap {
+  position: absolute;
+  inset: -60px;
+  width: 200px;
+  height: 200px;
+  margin: auto;
+  transform-origin: center;
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
 }
+
+.magic-layer {
+  position: absolute;
+  inset: 0;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 100%;
+  height: 100%;
+}
+
+.magic-layer.outer {
+  background-image: url("./assets/magic_outer.svg");
+  filter: drop-shadow(0 0 8px rgba(135,150,198,0.8));
+}
+
+.magic-layer.inner {
+  background-image: url("./assets/magic_inner.svg");
+  filter: drop-shadow(0 0 10px rgba(255,223,168,0.9));
+}
+
+/* 展開中 */
+.voice-btn.playing .magic-wrap {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* 回転 */
+@keyframes spinOuter { 100% { transform: rotate(-360deg); } }
+@keyframes spinInner { 100% { transform: rotate(360deg); } }
+
+.voice-btn.playing .outer {
+  animation: spinOuter 9s linear infinite;
+}
+
+.voice-btn.playing .inner {
+  animation: spinInner 6.9s linear infinite;
+}
+
+/* ==========================
+   🌊 波紋（青）
+   ========================== */
 
 .voice-btn .wave {
   position: absolute;
@@ -198,15 +114,18 @@ footer {
   z-index: 2;
 }
 
-/* ここが展開速度（魔法陣と合わせる） */
-@keyframes waveExpandSync {
+@keyframes waveExpand {
   0% {
     transform: translate(-50%, -50%) scale(0);
-    opacity: 0.9;
+    opacity: 1;
   }
-  50% {
-    transform: translate(-50%, -50%) scale(10);
-    opacity: 0.35;
+  40% {
+    transform: translate(-50%, -50%) scale(5);
+    opacity: 0.6;
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(12);
+    opacity: 0.25;
   }
   100% {
     transform: translate(-50%, -50%) scale(14);
@@ -214,41 +133,33 @@ footer {
   }
 }
 
-/* 魔法陣展開時間に合わせて：例 1.6s */
 .voice-btn.playing .wave {
-  animation: waveExpandSync 1.6s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: waveExpand 1.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ==========================
-   🌌 ギュン収束アニメーション（回転付き）
+   🌌 ギュイン収束（回転＋縮小）
    ========================== */
 
-@keyframes magicCollapse {
+@keyframes magicCollapseWrap {
   0% {
     transform: scale(1) rotate(0deg);
     opacity: 1;
-    filter: drop-shadow(0 0 10px rgba(255,223,168,0.8));
   }
   40% {
-    transform: scale(0.7) rotate(90deg);
+    transform: scale(0.7) rotate(120deg);
     opacity: 0.8;
   }
   70% {
-    transform: scale(0.3) rotate(180deg);
-    opacity: 0.5;
+    transform: scale(0.3) rotate(240deg);
+    opacity: 0.4;
   }
   100% {
-    transform: scale(0) rotate(270deg);
+    transform: scale(0) rotate(360deg);
     opacity: 0;
-    filter: drop-shadow(0 0 0 rgba(255,223,168,0));
   }
 }
 
-/* 💫 closingクラス中に発動する */
-button.voice-btn.closing::before,
-button.voice-btn.closing::after {
-  animation: magicCollapse 0.9s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+.voice-btn.closing .magic-wrap {
+  animation: magicCollapseWrap 0.9s cubic-bezier(0.65, 0, 0.45, 1) forwards;
 }
-
-
-
