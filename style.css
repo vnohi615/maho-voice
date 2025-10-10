@@ -98,11 +98,18 @@ main {
   #voiceContainer { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
 }
 @media (max-width: 400px) {
-  #voiceContainer { grid-template-columns: 1fr; gap: 1rem; }
+  #voiceContainer {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    justify-content: center; /* ✅ 中央寄せ修正 */
+    max-width: 100%;         /* ✅ スマホ幅に合わせる */
+    padding: 1rem;           /* ✅ 左右余白を詰めてズレ防止 */
+  }
 }
 
 /* ===== ボタン（※枠ありを維持） ===== */
 .voice-btn {
+  margin: 0 auto;  
   position: relative;
   display: grid;
   place-items: center;
@@ -227,3 +234,4 @@ main {
 .voice-btn.closing .magic-wrap {
   animation: magicCollapseWrap 1s cubic-bezier(0.8, 0, 0.2, 1) forwards;
 }
+
