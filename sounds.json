@@ -1,7 +1,11 @@
 [
-  { "label": "KP！", "src": "audio/KP.wav" },
-  { "label": "えっちぃ.", "src": "audio/えっちぃ.wav" },
-  { "label": "お姉さんといいことしない？", "src": "audio/お姉さんといいことしない？.wav" },
-  { "label": "ばーか", "src": "audio/ばーか.wav" },
-  { "label": "わしじゃよ", "src": "audio/わしじゃよ.wav" }
+  { "category": "greeting",  "label": "KP！",                   "src": "audio/KP.wav" },
+  { "category": "reaction",  "label": "えっちぃ.",               "src": "audio/えっちぃ.wav" },
+  { "category": "quote",     "label": "お姉さんといいことしない？", "src": "audio/お姉さんといいことしない？.wav" },
+  { "category": "badmouth",  "label": "ばーか",                   "src": "audio/ばーか.wav" },
+  { "category": "greeting",  "label": "わしじゃよ",               "src": "audio/わしじゃよ.wav" },
+
+  /* ここから“新着”にしたいものがあれば "new" を付ける（表示はJSで「新着」） */
+  { "category": "new",       "label": "New Sample 1",            "src": "audio/new_sample_1.wav" },
+  { "category": "tasukaru",  "label": "助かる…！",                "src": "audio/助かる.wav" }
 ]
