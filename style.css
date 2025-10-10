@@ -174,3 +174,47 @@ footer {
     height: 120px;
   }
 }
+
+/* ==========================
+   ✨ 波紋アニメーション
+   ========================== */
+
+.voice-btn {
+  position: relative;
+  overflow: hidden; /* 波紋がボタン内に収まるように */
+}
+
+.voice-btn .ripple {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle, rgba(255,223,168,0.7) 0%, rgba(255,223,168,0) 70%);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5; /* 魔法陣より上に */
+}
+
+@keyframes rippleExpand {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translate(-50%, -50%) scale(4.8);
+    opacity: 0.2;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(5.2);
+    opacity: 0;
+  }
+}
+
+.voice-btn.playing .ripple {
+  animation: rippleExpand 1.4s ease-out;
+}
+
+
