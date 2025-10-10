@@ -1,0 +1,151 @@
+/* ==========================
+   MAHOボイスコレクション
+   青金・明るめ魔法陣Ver.
+   ========================== */
+
+/* カラーテーマ */
+:root {
+  --maho-blue: #8796C6;
+  --maho-light: rgba(135,150,198,0.8);
+  --maho-glow: rgba(135,150,198,0.9);
+  --maho-gold: rgba(255,223,168,0.65);
+}
+
+/* ページ全体 */
+body {
+  margin: 0;
+  padding: 0;
+  background: radial-gradient(ellipse at center, #0a0e18 0%, #000 100%);
+  color: #fff;
+  font-family: 'Zen Maru Gothic', 'Cinzel Decorative', serif;
+  overflow-x: hidden;
+  text-align: center;
+}
+
+/* ヘッダー */
+header {
+  padding: 2rem 0 1rem;
+}
+header h1 {
+  font-size: 2rem;
+  color: var(--maho-blue);
+  text-shadow: 0 0 15px var(--maho-glow);
+  letter-spacing: 2px;
+}
+
+/* 検索 */
+#searchBox {
+  margin: 0.5rem auto 2rem;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.1);
+  color: #fff;
+  box-shadow: 0 0 6px var(--maho-gold);
+}
+
+/* ボタン配置 */
+#voiceButtons {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 1.5rem;
+  padding: 1rem 2rem 3rem;
+  justify-items: center;
+}
+
+/* ボタン本体 */
+button.voice {
+  position: relative;
+  width: 150px;
+  height: 150px;
+  border: none;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.1), var(--maho-light));
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  overflow: visible;
+  box-shadow: 0 0 20px var(--maho-gold);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+button.voice:hover {
+  transform: scale(1.06);
+  box-shadow: 0 0 30px var(--maho-glow);
+}
+
+/* 魔法陣レイヤー */
+button.voice::before,
+button.voice::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200%;
+  height: 200%;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -50%) rotate(0deg);
+  transition: opacity 0.3s ease;
+}
+
+/* 再生中 */
+button.voice.playing::before,
+button.voice.playing::after {
+  opacity: 1;
+}
+
+/* 外側魔法陣（金） */
+button.voice.playing::before {
+  background-image: url("./assets/magic_outer.svg");
+  animation: spinOuter 9s linear infinite;
+  filter: drop-shadow(0 0 10px var(--maho-gold));
+}
+
+/* 内側魔法陣（青金） */
+button.voice.playing::after {
+  background-image: url("./assets/magic_inner.svg");
+  animation: spinInner 9s linear infinite reverse;
+  filter: drop-shadow(0 0 12px var(--maho-glow));
+}
+
+/* 回転アニメーション */
+@keyframes spinOuter {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+@keyframes spinInner {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+/* ボタン内テキスト */
+button.voice span {
+  position: relative;
+  z-index: 10;
+  text-shadow: 0 0 6px rgba(255,255,255,0.8);
+  pointer-events: none;
+}
+
+/* フッター */
+footer {
+  color: rgba(255,255,255,0.6);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+/* スマホ対応 */
+@media (max-width: 600px) {
+  #voiceButtons {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+  button.voice {
+    width: 120px;
+    height: 120px;
+  }
+}

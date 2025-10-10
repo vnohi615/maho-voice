@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <!-- 円周テキストパス -->
+    <path id="innerTextCircle" d="M100,100 m-50,0 a50,50 0 1,1 100,0 a50,50 0 1,1 -100,0"/>
+
+    <!-- 星の共鳴点滅アニメーション -->
+    <style>
+      @keyframes twinkle {
+        0%, 100% { opacity: 0.25; }
+        50% { opacity: 1; }
+      }
+      .star {
+        animation: twinkle 3.5s ease-in-out infinite;
+      }
+      .s1 { animation-delay: 0s; }
+      .s2 { animation-delay: 0.4s; }
+      .s3 { animation-delay: 0.8s; }
+      .s4 { animation-delay: 1.2s; }
+      .s5 { animation-delay: 1.6s; }
+      .s6 { animation-delay: 2s; }
+      .s7 { animation-delay: 2.4s; }
+      .s8 { animation-delay: 2.8s; }
+      .s9 { animation-delay: 3.2s; }
+      .s10 { animation-delay: 3.6s; }
+      .s11 { animation-delay: 4s; }
+      .s12 { animation-delay: 4.4s; }
+      .s13 { animation-delay: 4.8s; }
+      .s14 { animation-delay: 5.2s; }
+      .s15 { animation-delay: 5.6s; }
+      .s16 { animation-delay: 6s; }
+    </style>
+
+    <!-- グラデーション（青 → 金） -->
+    <radialGradient id="blueGoldGlow" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="rgba(135,150,198,0.9)" />
+      <stop offset="70%" stop-color="rgba(255,223,168,0.7)" />
+      <stop offset="100%" stop-color="rgba(255,223,168,0.3)" />
+    </radialGradient>
+  </defs>
+
+  <!-- 外円 -->
+  <circle cx="100" cy="100" r="55" stroke="url(#blueGoldGlow)" stroke-width="1.3" fill="none"/>
+
+  <!-- 内円 -->
+  <circle cx="100" cy="100" r="35" stroke="rgba(135,150,198,0.35)" stroke-width="1" fill="none"/>
+
+  <!-- ☆：外側多め・青金グラデ発光 -->
+  <g fill="url(#blueGoldGlow)">
+    <!-- 上半分 -->
+    <text class="star s1" x="100" y="60" font-size="9" text-anchor="middle">✶</text>
+    <text class="star s2" x="130" y="70" font-size="8">✶</text>
+    <text class="star s3" x="70" y="75" font-size="8">✶</text>
+    <text class="star s4" x="145" y="95" font-size="9">✶</text>
+    <text class="star s5" x="55" y="95" font-size="9">✶</text>
+    <text class="star s6" x="120" y="85" font-size="8">✶</text>
+    <text class="star s7" x="80" y="85" font-size="8">✶</text>
+    <text class="star s8" x="110" y="70" font-size="9">✶</text>
+
+    <!-- 下半分 -->
+    <text class="star s9" x="100" y="135" font-size="9" text-anchor="middle">✶</text>
+    <text class="star s10" x="130" y="125" font-size="8">✶</text>
+    <text class="star s11" x="70" y="125" font-size="8">✶</text>
+    <text class="star s12" x="145" y="105" font-size="9">✶</text>
+    <text class="star s13" x="55" y="105" font-size="9">✶</text>
+    <text class="star s14" x="120" y="115" font-size="8">✶</text>
+    <text class="star s15" x="80" y="115" font-size="8">✶</text>
+    <text class="star s16" x="110" y="130" font-size="9">✶</text>
+  </g>
+
+  <!-- 円周テキスト -->
+  <text font-size="7.5" fill="url(#blueGoldGlow)" font-family="'Cinzel Decorative', serif" letter-spacing="1.2">
+    <textPath href="#innerTextCircle" startOffset="0%">
+      absolute immutable height absolute immutable height absolute immutable height
+    </textPath>
+  </text>
+
+  <!-- KP -->
+  <text x="50%" y="108" text-anchor="middle" fill="url(#blueGoldGlow)" font-size="10" font-family="'Cinzel Decorative', serif">KP</text>
+</svg>
