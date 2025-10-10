@@ -1,5 +1,5 @@
 // ===============================
-// 🎧 MAHO Voice Player + Magic Circle (Gyuuin Ver.)
+// 🎧 MAHO Voice Player + 2回転ギュイン収束 Ver.
 // ===============================
 
 const container = document.getElementById("voiceContainer");
@@ -11,7 +11,7 @@ fetch("sounds.json")
   .then(res => res.json())
   .then(sounds => {
     sounds.forEach(sound => {
-      // ===== ボタン構造 =====
+      // ===== ボタン生成 =====
       const btn = document.createElement("button");
       btn.className = "voice-btn";
       btn.innerHTML = `
@@ -24,7 +24,7 @@ fetch("sounds.json")
       `;
       container.appendChild(btn);
 
-      // ===== クリック処理 =====
+      // ===== クリック動作 =====
       btn.addEventListener("click", () => {
         // 他の音が鳴ってたら止めて収束
         if (currentAudio) {
@@ -33,7 +33,7 @@ fetch("sounds.json")
           if (currentButton) {
             currentButton.classList.remove("playing");
             currentButton.classList.add("closing");
-            setTimeout(() => currentButton.classList.remove("closing"), 300);
+            setTimeout(() => currentButton.classList.remove("closing"), 1000);
           }
         }
 
@@ -45,11 +45,14 @@ fetch("sounds.json")
         btn.classList.add("playing");
         audio.play();
 
-        // 終了時に収束アニメ
+        // 再生終了時の処理（ギュイン収束）
         audio.addEventListener("ended", () => {
           btn.classList.remove("playing");
           btn.classList.add("closing");
-          setTimeout(() => btn.classList.remove("closing"), 900);
+
+          // 収束アニメ終了後にリセット
+          setTimeout(() => btn.classList.remove("closing"), 1000);
+
           if (currentAudio === audio) {
             currentAudio = null;
             currentButton = null;
@@ -59,4 +62,3 @@ fetch("sounds.json")
     });
   })
   .catch(err => console.error("Error loading sounds:", err));
-
