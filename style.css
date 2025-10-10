@@ -1,5 +1,5 @@
 /* ==========================
-   🪄 MAHO Voice Magic UI — 2回転ギュイン完全版
+   🪄 MAHO Voice Magic UI — レイアウト完全安定版
    ========================== */
 
 :root {
@@ -7,37 +7,53 @@
   --maho-gold: #FFDFA8;
 }
 
-/* ===== ベース ===== */
+/* ===== 全体構造 ===== */
 body {
   margin: 0;
   background: radial-gradient(circle at center, #0b0c14 0%, #050509 100%);
   color: white;
   font-family: 'Cinzel Decorative', serif;
   display: flex;
-  justify-content: center;
+  flex-direction: column; /* ←縦積みに戻す！ */
   align-items: center;
   min-height: 100vh;
 }
 
-#voiceContainer {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 2rem;
-  padding: 2rem;
-  justify-items: center;
-  align-items: center;
+/* ===== ヘッダー／フッター ===== */
+header, footer {
+  width: 100%;
+  text-align: center;
+  padding: 1rem 0;
+  color: var(--maho-gold);
 }
 
-/* ===== ボタン構造 ===== */
-.voice-btn {
-  position: relative;
+main {
+  width: 100%;
+  max-width: 1000px;
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-width: 160px;
-  min-height: 160px;
-  padding: 1rem 0.5rem;
+}
+
+/* ===== グリッドレイアウト ===== */
+#voiceContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 2.5rem;
+  padding: 2rem;
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+}
+
+/* ===== ボタン ===== */
+.voice-btn {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 180px;
+  height: 180px;
   border: none;
   background: transparent;
   color: var(--maho-gold);
@@ -85,30 +101,24 @@ body {
   filter: drop-shadow(0 0 10px rgba(255,223,168,0.9));
 }
 
-/* ===== 展開・回転 ===== */
+/* ===== 展開アニメ ===== */
 .voice-btn.playing .magic-wrap {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
 
-/* 外（青）：ゆっくり反時計回り */
+/* ===== 回転アニメ ===== */
 @keyframes spinOuter { 100% { transform: rotate(-360deg); } }
-
-/* 内（金）：やや速く時計回り */
 @keyframes spinInner { 100% { transform: rotate(360deg); } }
 
 .voice-btn.playing .outer {
   animation: spinOuter 9s linear infinite;
 }
-
 .voice-btn.playing .inner {
   animation: spinInner 6.9s linear infinite;
 }
 
-/* ==========================
-   🌊 波紋エフェクト（青）
-   ========================== */
-
+/* ===== 波紋 ===== */
 .voice-btn .wave {
   position: absolute;
   top: 50%;
@@ -124,32 +134,17 @@ body {
 }
 
 @keyframes waveExpand {
-  0% {
-    transform: translate(-50%, -50%) scale(0);
-    opacity: 1;
-  }
-  40% {
-    transform: translate(-50%, -50%) scale(5);
-    opacity: 0.6;
-  }
-  70% {
-    transform: translate(-50%, -50%) scale(12);
-    opacity: 0.25;
-  }
-  100% {
-    transform: translate(-50%, -50%) scale(14);
-    opacity: 0;
-  }
+  0% { transform: translate(-50%, -50%) scale(0); opacity: 1; }
+  40% { transform: translate(-50%, -50%) scale(5); opacity: 0.6; }
+  70% { transform: translate(-50%, -50%) scale(12); opacity: 0.25; }
+  100% { transform: translate(-50%, -50%) scale(14); opacity: 0; }
 }
 
 .voice-btn.playing .wave {
   animation: waveExpand 1.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ==========================
-   🌌 ギュイン収束（2回転＋キュッと締まる）
-   ========================== */
-
+/* ===== ギュイン収束（2回転＋締まり強化） ===== */
 @keyframes magicCollapseWrap {
   0% {
     transform: translate(-50%, -50%) scale(1) rotate(0deg);
@@ -162,12 +157,10 @@ body {
 }
 
 .voice-btn.closing .magic-wrap {
-  animation: magicCollapseWrap 1s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+  animation: magicCollapseWrap 1s cubic-bezier(0.8, 0, 0.2, 1) forwards;
 }
 
-/* ==========================
-   ✨ テキスト配置補正
-   ========================== */
+/* ===== ラベル配置 ===== */
 .voice-btn span {
   position: relative;
   z-index: 2;
