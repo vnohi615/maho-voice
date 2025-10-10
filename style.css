@@ -1,5 +1,5 @@
 /* ==========================
-   🪄 MAHO Voice Magic UI — 完全安定ギュイン版
+   🪄 MAHO Voice Magic UI — 2回転ギュイン完全版
    ========================== */
 
 :root {
@@ -92,14 +92,10 @@ body {
 }
 
 /* 外（青）：ゆっくり反時計回り */
-@keyframes spinOuter { 
-  100% { transform: rotate(-360deg); } 
-}
+@keyframes spinOuter { 100% { transform: rotate(-360deg); } }
 
 /* 内（金）：やや速く時計回り */
-@keyframes spinInner { 
-  100% { transform: rotate(360deg); } 
-}
+@keyframes spinInner { 100% { transform: rotate(360deg); } }
 
 .voice-btn.playing .outer {
   animation: spinOuter 9s linear infinite;
@@ -151,7 +147,7 @@ body {
 }
 
 /* ==========================
-   🌌 ギュイン収束（回転＋縮小）
+   🌌 ギュイン収束（2回転＋キュッと締まる）
    ========================== */
 
 @keyframes magicCollapseWrap {
@@ -159,22 +155,14 @@ body {
     transform: translate(-50%, -50%) scale(1) rotate(0deg);
     opacity: 1;
   }
-  40% {
-    transform: translate(-50%, -50%) scale(0.7) rotate(120deg);
-    opacity: 0.8;
-  }
-  70% {
-    transform: translate(-50%, -50%) scale(0.3) rotate(240deg);
-    opacity: 0.4;
-  }
   100% {
-    transform: translate(-50%, -50%) scale(0) rotate(360deg);
+    transform: translate(-50%, -50%) scale(0) rotate(720deg);
     opacity: 0;
   }
 }
 
 .voice-btn.closing .magic-wrap {
-  animation: magicCollapseWrap 0.9s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+  animation: magicCollapseWrap 1s cubic-bezier(0.7, 0, 0.3, 1) forwards;
 }
 
 /* ==========================
