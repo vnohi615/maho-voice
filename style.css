@@ -133,7 +133,7 @@ button.voice-btn.playing::before {
 /* 内側魔法陣（青金） */
 button.voice-btn.playing::after {
   background-image: url("./assets/magic_inner.svg");
-  animation: spinInner 9s linear infinite reverse;
+  animation: spinInner 6.9s linear infinite;
   filter: drop-shadow(0 0 10px rgba(135,150,198,0.75));
 }
 
@@ -147,13 +147,13 @@ button.voice-btn span {
 
 /* 魔法陣の回転 */
 @keyframes spinOuter {
-  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-  100% { transform: translate(-50%, -50%) rotate(360deg) scale(1); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(-360deg); } 
 }
 
 @keyframes spinInner {
-  0% { transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-  100% { transform: translate(-50%, -50%) rotate(-360deg) scale(1); }
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); } 
 }
 
 /* フッター */
@@ -218,5 +218,6 @@ footer {
 .voice-btn.playing .wave {
   animation: waveExpandSync 1.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 
 
