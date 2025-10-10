@@ -176,12 +176,12 @@ footer {
 }
 
 /* ==========================
-   🌊 波形エフェクト
+   🌊 波形エフェクト（展開速度同期ver）
    ========================== */
 
 .voice-btn {
   position: relative;
-  overflow: visible; /* ←波形をボタン外に出せるように */
+  overflow: visible;
 }
 
 .voice-btn .wave {
@@ -191,21 +191,22 @@ footer {
   width: 30px;
   height: 30px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(255,223,168,0.7) 0%, rgba(255,223,168,0) 70%);
+  background: radial-gradient(circle, rgba(135,150,198,0.8) 0%, rgba(135,150,198,0) 70%);
   transform: translate(-50%, -50%) scale(0);
   opacity: 0;
   pointer-events: none;
   z-index: 2;
 }
 
-@keyframes waveExpand {
+/* ここが展開速度（魔法陣と合わせる） */
+@keyframes waveExpandSync {
   0% {
     transform: translate(-50%, -50%) scale(0);
     opacity: 0.9;
   }
-  60% {
+  50% {
     transform: translate(-50%, -50%) scale(10);
-    opacity: 0.25;
+    opacity: 0.35;
   }
   100% {
     transform: translate(-50%, -50%) scale(14);
@@ -213,6 +214,9 @@ footer {
   }
 }
 
+/* 魔法陣展開時間に合わせて：例 1.6s */
 .voice-btn.playing .wave {
-  animation: waveExpand 1.8s ease-out;
+  animation: waveExpandSync 1.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
+
+
