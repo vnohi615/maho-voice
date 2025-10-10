@@ -141,7 +141,7 @@ main {
 }
 
 .voice-btn.playing .magic-wrap {
-  animation: magicAppear 0.8s cubic-bezier(0.45, 0, 0.2, 1.1) forwards;
+  animation: magicAppear 0.8s cubic-bezier(0.25, 0, 0.2, 1.1) forwards;
 }
 
 /* ===== 回転 ===== */
@@ -213,3 +213,4 @@ main {
   z-index: 2;
   text-align: center;
 }
+
