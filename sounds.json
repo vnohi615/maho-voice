@@ -5,8 +5,9 @@
   { "category": "badmouth",  "label": "ばーか",                   "src": "audio/ばーか.wav" },
   { "category": "greeting",  "label": "わしじゃよ",               "src": "audio/わしじゃよ.wav" },
   { "category": "new",       "label": "くしょがよぉ",            "src": "audio/くしょがよぉ.wav" },
-  { "category": "tasukaru",  "label": "助かる…！",                "src": "audio/助かる.wav" }
+  { "category": "tasukaru",  "label": "演出確認用(∞)",                "src": "audio/助かる.wav" }
 ]
+
 
 
 
