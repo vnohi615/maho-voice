@@ -6,21 +6,67 @@
   <title>💧魔儘まほの呪文集(ボイス集)🪄 - 更新履歴</title>
   <link rel="stylesheet" href="./style.css" />
   <style>
-    /* 更新履歴ページ専用のちょい調整 */
+    /* ================================
+       🪄 更新履歴ページ専用レイアウト
+       ================================ */
+    body {
+      background: radial-gradient(circle at center, #0b1020 0%, #03040a 100%);
+      color: #bcd4ff;
+      font-family: 'Cinzel Decorative', serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+      text-align: center;
+      padding: 1.5rem 0 0.5rem;
+      color: #aecdff;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      letter-spacing: 1px;
+    }
+
+    nav {
+      margin-top: 0.5rem;
+    }
+
+    nav a {
+      color: #aecdff;
+      text-decoration: none;
+      font-size: 0.95rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* ===== メインレイアウト ===== */
     main {
-      max-width: 800px;
-      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* セクションを中央揃え */
+      width: 100%;
       padding: 2rem 1rem;
-      line-height: 1.7;
+      box-sizing: border-box;
+      flex: 1;
     }
 
     section {
+      width: min(90%, 700px); /* 可変だけど共通幅 */
       background: rgba(255,255,255,0.03);
       border: 1px solid rgba(142,165,255,0.2);
       border-radius: 1rem;
       padding: 1.5rem 2rem;
       margin-bottom: 2rem;
       box-shadow: 0 0 10px rgba(142,165,255,0.1);
+      text-align: left;
+      word-wrap: break-word;
     }
 
     h2 {
@@ -51,24 +97,26 @@
     }
 
     footer {
-      margin-top: 3rem;
       text-align: center;
       color: #99b4ff;
       font-size: 0.9rem;
+      padding: 1.5rem 0;
+      border-top: 1px solid rgba(142,165,255,0.2);
     }
 
-    nav {
-      margin-bottom: 1rem;
-    }
-
-    nav a {
-      color: #aecdff;
-      text-decoration: none;
-      font-size: 0.95rem;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
+    @media (max-width: 480px) {
+      header h1 {
+        font-size: 1.4rem;
+      }
+      section {
+        padding: 1.2rem 1.2rem;
+      }
+      h2 {
+        font-size: 1.15rem;
+      }
+      h3 {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -95,7 +143,7 @@
 
     <section>
       <h2>📅 2025年9月更新</h2>
-      <h3>💫 UIアニメーションを強化しました（魔法陣の光演出）。</h3>
+      <h3>💫 UIアニメーションを設定しました（魔法陣の光演出）。</h3>
     </section>
   </main>
 
