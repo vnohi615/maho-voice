@@ -88,9 +88,7 @@ function renderButtons(list) {
   list.forEach(sound => {
     const btn = document.createElement("button");
     btn.className = "voice-btn";
-    btn.innerHTML = `
-      <div class="cover"></div>
-      <div class="page"></div>
+     btn.innerHTML = `
       <div class="magic-wrap">
         <div class="magic-layer outer"></div>
         <div class="magic-layer inner"></div>
@@ -149,4 +147,5 @@ fetch("sounds.json")
     nav.innerHTML = "";
     container.innerHTML = "<p>ボイスの読み込みに失敗しました。</p>";
   });
+
 
