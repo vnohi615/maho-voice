@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>💧Maho Voice Lite</title>
+  <style>
+    body {
+      background: #0b1020;
+      color: #bcd4ff;
+      font-family: sans-serif;
+      text-align: center;
+      padding: 1rem;
+    }
+    .voice-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1rem;
+    }
+    button {
+      background: rgba(142,165,255,0.1);
+      border: 1px solid rgba(142,165,255,0.4);
+      color: #bcd4ff;
+      padding: 0.6rem 1rem;
+      border-radius: 0.5rem;
+      cursor: pointer;
+    }
+    button:hover {
+      background: rgba(142,165,255,0.2);
+    }
+  </style>
+</head>
+<body>
+  <h1>💧Maho Voice Lite</h1>
+  <p>軽量版：アニメーションなしで音声だけ再生できます。</p>
+  <div class="voice-list" id="liteContainer"></div>
+
+  <script>
+    fetch("sounds.json")
+      .then(res => res.json())
+      .then(data => {
+        const container = document.getElementById("liteContainer");
+        data.forEach(s => {
+          const btn = document.createElement("button");
+          btn.textContent = s.label;
+          btn.onclick = () => new Audio(s.src).play();
+          container.appendChild(btn);
+        });
+      })
+      .catch(() => {
+        document.body.innerHTML += "<p>読み込みに失敗しました。</p>";
+      });
+  </script>
+</body>
+</html>
