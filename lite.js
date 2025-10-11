@@ -9,10 +9,13 @@ const categoryLabels = {
   uncategorized: "未分類"
 };
 
+let currentAudio = null; // 現在再生中の音声
+
 fetch("sounds.json")
   .then(res => res.json())
   .then(data => {
     const container = document.getElementById("liteContainer");
+
     // カテゴリごとにグループ化
     const grouped = {};
     data.forEach(s => {
@@ -37,7 +40,25 @@ fetch("sounds.json")
       grouped[cat].forEach(s => {
         const btn = document.createElement("button");
         btn.textContent = s.label;
-        btn.onclick = () => new Audio(s.src).play();
+
+        btn.onclick = () => {
+          // 再生中があれば止める
+          if (currentAudio) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+          }
+
+          // 新しい音声を再生
+          const audio = new Audio(s.src);
+          currentAudio = audio;
+          audio.play();
+
+          // 終了したら状態をリセット
+          audio.addEventListener("ended", () => {
+            if (currentAudio === audio) currentAudio = null;
+          });
+        };
+
         list.appendChild(btn);
       });
 
