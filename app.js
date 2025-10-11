@@ -89,6 +89,8 @@ function renderButtons(list) {
     const btn = document.createElement("button");
     btn.className = "voice-btn";
     btn.innerHTML = `
+      <div class="cover"></div>
+      <div class="page"></div>
       <div class="magic-wrap">
         <div class="magic-layer outer"></div>
         <div class="magic-layer inner"></div>
@@ -96,7 +98,7 @@ function renderButtons(list) {
       <span>${sound.label}</span>
       <span class="wave"></span>
     `;
-    container.appendChild(btn);
+ container.appendChild(btn);
 
     btn.addEventListener("click", () => {
       // 他の音が鳴っていたら確実に停止・収束
@@ -147,3 +149,4 @@ fetch("sounds.json")
     nav.innerHTML = "";
     container.innerHTML = "<p>ボイスの読み込みに失敗しました。</p>";
   });
+
