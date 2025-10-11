@@ -88,14 +88,25 @@ function renderButtons(list) {
   list.forEach(sound => {
     const btn = document.createElement("button");
     btn.className = "voice-btn";
-     btn.innerHTML = `
-      <div class="magic-wrap">
-        <div class="magic-layer outer"></div>
-        <div class="magic-layer inner"></div>
-      </div>
-      <span>${sound.label}</span>
-      <span class="wave"></span>
-    `;
+      btn.innerHTML = `
+        <div class="magic-wrap">
+          <div class="magic-layer outer"></div>
+          <div class="magic-layer inner"></div>
+          <div class="core">
+            <div class="cube">
+              <div class="face front"></div>
+              <div class="face back"></div>
+              <div class="face right"></div>
+              <div class="face left"></div>
+              <div class="face top"></div>
+              <div class="face bottom"></div>
+            </div>
+          </div>
+        </div>
+        <span>${sound.label}</span>
+        <span class="wave"></span>
+      `;
+
 
  container.appendChild(btn);
 
@@ -148,6 +159,7 @@ fetch("sounds.json")
     nav.innerHTML = "";
     container.innerHTML = "<p>ボイスの読み込みに失敗しました。</p>";
   });
+
 
 
 
