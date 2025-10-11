@@ -250,6 +250,107 @@ main {
   animation: magicCollapseWrap 1s cubic-bezier(0.8, 0, 0.2, 1) forwards;
 }
 
+/* =============================================
+   🔆 発光強化＋エネルギーコア演出
+   ============================================= */
+
+/* --- 発光層の強化（光の層を厚く・混色） --- */
+.magic-layer.outer {
+  filter:
+    drop-shadow(0 0 8px rgba(142,165,255,0.8))
+    drop-shadow(0 0 18px rgba(142,165,255,0.6))
+    blur(1px);
+  mix-blend-mode: screen;
+}
+
+.magic-layer.inner {
+  filter:
+    drop-shadow(0 0 12px rgba(200,220,255,0.8))
+    drop-shadow(0 0 28px rgba(180,200,255,0.5));
+  mix-blend-mode: screen;
+}
+
+/* --- 残光フェード（魔法陣が光を残す） --- */
+.magic-wrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, rgba(142,165,255,0.25), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.8s ease-out;
+  pointer-events: none;
+  z-index: 1;
+}
+.voice-btn.playing .magic-wrap::after {
+  opacity: 1;
+}
+.voice-btn.closing .magic-wrap::after {
+  opacity: 0;
+}
+
+/* =============================================
+   🧊 Arcane Cube Core — 立体奥行き版（ワイヤーフレーム）
+   ============================================= */
+.core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  perspective: 800px; /* ← 奥行きを深く */
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.6s ease-out, opacity 0.8s ease-out;
+  opacity: 0;
+  z-index: 3;
+}
+.voice-btn.playing .core {
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+}
+.voice-btn.closing .core {
+  transform: translate(-50%, -50%) scale(0.5);
+  opacity: 0;
+}
+
+/* --- Cube本体 --- */
+.cube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transform-origin: center center;
+  animation: cubeSpin 8s linear infinite;
+}
+
+/* --- 各面（枠線のみ） --- */
+.face {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 1.8px solid rgba(180, 200, 255, 0.6);
+  background: transparent;
+  box-shadow: 0 0 4px rgba(142,165,255,0.4);
+}
+
+/* --- 面の立体配置 --- */
+.front  { transform: translateZ(20px); }
+.back   { transform: rotateY(180deg) translateZ(20px); }
+.right  { transform: rotateY(90deg) translateZ(20px); }
+.left   { transform: rotateY(-90deg) translateZ(20px); }
+.top    { transform: rotateX(90deg) translateZ(20px); }
+.bottom { transform: rotateX(-90deg) translateZ(20px); }
+
+/* --- 立体回転アニメーション --- */
+@keyframes cubeSpin {
+  0%   { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  25%  { transform: rotateX(180deg) rotateY(90deg); }
+  50%  { transform: rotateX(360deg) rotateY(180deg); }
+  75%  { transform: rotateX(540deg) rotateY(270deg); }
+  100% { transform: rotateX(720deg) rotateY(360deg) rotateZ(360deg); }
+}
+
+
+
 /* ===== カテゴリ切替フェード ===== */
 .fade-out {
   opacity: 0;
@@ -282,3 +383,9 @@ main {
     padding-right: 0 !important;
   }
 }
+
+
+
+
+
+

@@ -4,8 +4,19 @@
   { "category": "quote",     "label": "お姉さんといいことしない？", "src": "audio/お姉さんといいことしない？.wav" },
   { "category": "badmouth",  "label": "ばーか",                   "src": "audio/ばーか.wav" },
   { "category": "greeting",  "label": "わしじゃよ",               "src": "audio/わしじゃよ.wav" },
-  { "category": "new",       "label": "New Sample 1",            "src": "audio/new_sample_1.wav" },
-  { "category": "tasukaru",  "label": "助かる…！",                "src": "audio/助かる.wav" }
+  { "category": "badmouth",       "label": "くしょがよぉ",            "src": "audio/くしょがよぉ.wav" },
+  { "category": "new",  "label": "いきます",                "src": "audio/いきます.wav" },
+  { "category": "new",  "label": "なるほど",                "src": "audio/なるほど.wav" },
+  { "category": "tasukaru",  "label": "TINTIN",                "src": "audio/TINTIN.wav" },
+  { "category": "quote",  "label": "また会いに来てね！",       "src": "audio/また会いに来てね！.wav" },
+  { "category": "quote",  "label": "みんな、今週も頑張ろうね！",  "src": "audio/みんな、今週も頑張ろうね！.wav" },
+  { "category": "tasukaru",  "label": "演出確認用(∞)",                "src": "audio/助かる.wav" }
 ]
+
+
+
+
+
+
 
 
