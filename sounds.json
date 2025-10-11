@@ -4,8 +4,9 @@
   { "category": "quote",     "label": "お姉さんといいことしない？", "src": "audio/お姉さんといいことしない？.wav" },
   { "category": "badmouth",  "label": "ばーか",                   "src": "audio/ばーか.wav" },
   { "category": "greeting",  "label": "わしじゃよ",               "src": "audio/わしじゃよ.wav" },
-  { "category": "new",       "label": "New Sample 1",            "src": "audio/new_sample_1.wav" },
+  { "category": "new",       "label": "くしょがよ",            "src": "audio/くしょがよ.wav" },
   { "category": "tasukaru",  "label": "助かる…！",                "src": "audio/助かる.wav" }
 ]
+
 
 
