@@ -295,13 +295,13 @@ main {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 50px;
-  height: 50px;
-  perspective: 600px;
+  width: 40px;
+  height: 40px;
+  perspective: 700px;
   transform: translate(-50%, -50%) scale(0);
   transition: transform 0.6s ease-out, opacity 0.8s ease-out;
   opacity: 0;
-  z-index: 2;
+  z-index: 3;
 }
 .voice-btn.playing .core {
   transform: translate(-50%, -50%) scale(1);
@@ -318,7 +318,7 @@ main {
   width: 100%;
   height: 100%;
   transform-style: preserve-3d;
-  animation: cubeSpin 6s linear infinite;
+  animation: cubeSpin 2s linear infinite;
 }
 
 /* --- 各面 --- */
@@ -327,18 +327,18 @@ main {
   width: 100%;
   height: 100%;
   background: linear-gradient(145deg, rgba(142,165,255,0.4), rgba(255,255,255,0.15));
-  border: 1px solid rgba(200,220,255,0.3);
+  border: 1.2px solid rgba(200,220,255,0.6);
   box-shadow: inset 0 0 10px rgba(200,220,255,0.5);
-  filter: drop-shadow(0 0 12px rgba(142,165,255,0.6));
+  filter: drop-shadow(0 0 6px rgba(142,165,255,0.6));
 }
 
 /* 3D配置 */
-.front  { transform: translateZ(25px); }
-.back   { transform: rotateY(180deg) translateZ(25px); }
-.right  { transform: rotateY(90deg) translateZ(25px); }
-.left   { transform: rotateY(-90deg) translateZ(25px); }
-.top    { transform: rotateX(90deg) translateZ(25px); }
-.bottom { transform: rotateX(-90deg) translateZ(25px); }
+.front  { transform: translateZ(20px); }
+.back   { transform: rotateY(180deg) translateZ(20px); }
+.right  { transform: rotateY(90deg) translateZ(20px); }
+.left   { transform: rotateY(-90deg) translateZ(20px); }
+.top    { transform: rotateX(90deg) translateZ(20px); }
+.bottom { transform: rotateX(-90deg) translateZ(20px); }
 
 /* --- 回転アニメーション --- */
 @keyframes cubeSpin {
@@ -381,4 +381,5 @@ main {
     padding-right: 0 !important;
   }
 }
+
 
