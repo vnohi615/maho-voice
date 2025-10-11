@@ -10,8 +10,9 @@
   { "category": "tasukaru",  "label": "TINTIN",                "src": "audio/TINTIN.wav" },
   { "category": "quote",  "label": "また会いに来てね！",       "src": "audio/また会いに来てね！.wav" },
   { "category": "quote",  "label": "みんな、今週も頑張ろうね！",  "src": "audio/みんな、今週も頑張ろうね！.wav" },
-  { "category": "tasukaru",  "label": "演出確認用(∞)",                "src": "audio/助かる.wav" },
+  { "category": "tasukaru",  "label": "演出確認用(∞)",                "src": "audio/助かる.wav" }
 ]
+
 
 
 
