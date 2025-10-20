@@ -19,12 +19,12 @@ const categoryLabels = {
   badmouth: "お口悪悪",
   quote: "名言・セリフ",
   tasukaru: "たすかる",
-  phrase:"フレーズ",
+  phrase: "フレーズ",
   uncategorized: "未分類"
 };
 
 /** 目次の並び順（存在するものだけをこの順で並べる） */
-const categoryOrder = ["all", "new", "greeting", "reaction", "badmouth", "quote", "tasukaru", "uncategorized"];
+const categoryOrder = ["all", "new", "greeting", "reaction", "badmouth", "quote", "phrase", "tasukaru", "uncategorized"];
 
 /** 既存の再生を安全に停止し、演出の収束を走らせる */
 function stopCurrentPlayback() {
@@ -160,6 +160,7 @@ fetch("sounds.json")
     nav.innerHTML = "";
     container.innerHTML = "<p>ボイスの読み込みに失敗しました。</p>";
   });
+
 
 
 
