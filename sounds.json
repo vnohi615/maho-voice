@@ -15,7 +15,9 @@
   { "category": "new",  "label": "ママほ様その3",  "src": "audio/ママほ様その3.wav" },
   { "category": "new",  "label": "お前ってやつはなぁ…これだからしょうがないのぉ",  "src": "audio/お前ってやつはなぁ…これだからしょうがないのぉ.wav" },
   { "category": "new",  "label": "じゃあの～ばいばーい",  "src": "audio/じゃあの～ばいばーい.wav" },
+  { "category": "tasukaru",  "label": "くしゃみ助かる(音質悪)",  "src": "audio/くしゃみ助かる(音質悪).wav" },
   { "category": "tasukaru",  "label": "演出確認用(∞)",                "src": "audio/助かる.wav" }
 ]
+
 
 
