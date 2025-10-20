@@ -11,10 +11,11 @@
   { "category": "quote",  "label": "また会いに来てね！",       "src": "audio/また会いに来てね！.wav" },
   { "category": "quote",  "label": "みんな、今週も頑張ろうね！",  "src": "audio/みんな、今週も頑張ろうね！.wav" },
   { "category": "new",  "label": "ママほ様その1",  "src": "audio/ママほ様その1.wav" },
-  { "category": "new",  "label": "ママほ様その2 ",  "src": "audio/ママほ様その2 .wav" },
+  { "category": "new",  "label": "ママほ様その2 ",  "src": "audio/ママほ様その2.wav" },
   { "category": "new",  "label": "ママほ様その3",  "src": "audio/ママほ様その3.wav" },
   { "category": "new",  "label": "お前ってやつはなぁ…これだからしょうがないのぉ",  "src": "audio/お前ってやつはなぁ…これだからしょうがないのぉ.wav" },
   { "category": "new",  "label": "じゃあの～ばいばーい",  "src": "audio/じゃあの～ばいばーい.wav" },
   { "category": "tasukaru",  "label": "演出確認用(∞)",                "src": "audio/助かる.wav" }
 ]
+
 
