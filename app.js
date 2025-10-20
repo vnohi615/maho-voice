@@ -19,6 +19,7 @@ const categoryLabels = {
   badmouth: "お口悪悪",
   quote: "名言・セリフ",
   tasukaru: "たすかる",
+  phrase:"フレーズ",
   uncategorized: "未分類"
 };
 
@@ -159,6 +160,7 @@ fetch("sounds.json")
     nav.innerHTML = "";
     container.innerHTML = "<p>ボイスの読み込みに失敗しました。</p>";
   });
+
 
 
 
